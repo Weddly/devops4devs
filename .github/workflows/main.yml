@@ -8,10 +8,24 @@ jobs:
   CI:
     runs-on: ubuntu-latest
     steps:
-      - name: Step 01
-        run: echo "Image Build execution"
-      - name: Step 02
-        run: ech "Image Push execution"
+      - name: Getting the code
+        uses: actions/checkout@v4
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./src
+          push: true
+          file: ./src/Review-Filmes.Web/Dockerfile
+          tags: |
+          weddly/devops4dev-review-movies:v${{ github.run_number }}
+          weddly/devops4dev-review-movies:latest
   CD:
     runs-on: ubuntu-latest
     needs: [CI]
