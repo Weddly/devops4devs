@@ -24,7 +24,7 @@ jobs:
           push: true
           file: ./src/Review-Filmes.Web/Dockerfile
           tags: |
-          weddly/devops4dev-review-movies:v${{ github.run_number }}
+          weddly/devops4dev-review-movies:v1
           weddly/devops4dev-review-movies:latest
   CD:
     runs-on: ubuntu-latest
