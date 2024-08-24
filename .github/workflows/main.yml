@@ -11,7 +11,7 @@ jobs:
       - name: Step 01
         run: echo "Image Build execution"
       - name: Step 02
-        run: echo "Image Push execution"
+        run: ech "Image Push execution"
   CD:
     runs-on: ubuntu-latest
     needs: [CI]
